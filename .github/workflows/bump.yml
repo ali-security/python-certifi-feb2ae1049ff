@@ -2,9 +2,6 @@ name: Bump cacert.pem
 
 on:
   workflow_dispatch:
-  schedule:
-    # Run daily
-    - cron: "0 0 * * *"
 
 permissions:
   contents: read
@@ -13,6 +10,7 @@ jobs:
   bump:
     if: github.repository_owner == 'certifi'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: write  # for peter-evans/create-pull-request to create branch
       pull-requests: write  # for peter-evans/create-pull-request to create a PR
